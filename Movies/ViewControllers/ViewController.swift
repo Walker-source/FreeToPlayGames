@@ -64,13 +64,8 @@ final class ViewController: UIViewController {
 //        getMostPopularMovies()
         testing()
     }
-
-    @IBAction private func actionButton() {
-        print("This is an action button")
-    }
-
-
 }
+
 // MARK: - Networking
 private extension ViewController {
     func getMostPopularMovies() {
@@ -101,10 +96,8 @@ private extension ViewController {
                         DispatchQueue.main.async {
                             self.view.backgroundColor = .green
                         }
-                        print("STATUS CODE: \(response.statusCode)")
                     } catch let error {
                         showAlert(withStatus: .failed)
-                        print("STATUS CODE: \(response.statusCode)")
                         print(error)
                         DispatchQueue.main.async {
                             self.view.backgroundColor = .red
@@ -120,10 +113,7 @@ private extension ViewController {
     func testing() {
         URLSession.shared
             .dataTask(with: Link.testing.url) { [weak self] data, _, error in
-                guard let self else {
-                    print("Cant do testing")
-                    return
-                }
+                guard let self else { return }
                 guard let data else {
                     print(error?.localizedDescription ?? "No error description")
                     return
