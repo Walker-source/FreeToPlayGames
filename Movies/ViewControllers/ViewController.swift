@@ -98,10 +98,17 @@ private extension ViewController {
                         )
                         showAlert(withStatus: .succes)
                         mostPopularMovies.data.forEach { print($0) }
+                        DispatchQueue.main.async {
+                            self.view.backgroundColor = .green
+                        }
                         print("STATUS CODE: \(response.statusCode)")
                     } catch let error {
                         showAlert(withStatus: .failed)
-                        print(error.localizedDescription)
+                        print("STATUS CODE: \(response.statusCode)")
+                        print(error)
+                        DispatchQueue.main.async {
+                            self.view.backgroundColor = .red
+                        }
                     }
                 } else {
                     showAlert(withStatus: .failed)
@@ -128,9 +135,15 @@ private extension ViewController {
                     let mostPopularMovies = try decoder.decode(Testing.self, from: data)
                     showAlert(withStatus: .succes)
                     mostPopularMovies.data.forEach { print($0) }
+                    DispatchQueue.main.async {
+                        self.view.backgroundColor = .green
+                    }
                 } catch let error {
                     showAlert(withStatus: .failed)
                     print(error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self.view.backgroundColor = .red
+                    }
                 }
             }.resume()
     }
