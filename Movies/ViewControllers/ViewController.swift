@@ -43,39 +43,39 @@ enum Alert {
 }
 
 final class ViewController: UIViewController {
-
-    let headers = [
+    // MARK: - Private Properties
+    private let headers = [
         "x-rapidapi-key": "9f2de86b9dmsh83f8d1376e73079p1b96bejsn8083da56f624",
         "x-rapidapi-host": "imdb236.p.rapidapi.com"
     ]
-    let request = NSMutableURLRequest(
+    private let requestMostPopularMovies = NSMutableURLRequest(
         url: Link.mostPopularMovies.url,
         cachePolicy: .useProtocolCachePolicy,
         timeoutInterval: 10.0
     )
     
+    // MARK: - View Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        request.httpMethod = "GET"
-        request.allHTTPHeaderFields = headers
+        requestMostPopularMovies.httpMethod = "GET"
+        requestMostPopularMovies.allHTTPHeaderFields = headers
         
 //        getMostPopularMovies()
         testing()
     }
 
-    @IBAction func actionButton() {
+    @IBAction private func actionButton() {
         print("This is an action button")
     }
 
 
 }
-
 // MARK: - Networking
 private extension ViewController {
     func getMostPopularMovies() {
         URLSession.shared
-            .dataTask(with: request as URLRequest) {
+            .dataTask(with: requestMostPopularMovies as URLRequest) {
                 [weak self] data,
                 response,
                 error in
@@ -83,7 +83,7 @@ private extension ViewController {
                     print("Cant get most popular movies")
                     return }
                 guard let data,
- let response = response as? HTTPURLResponse else {
+                      let response = response as? HTTPURLResponse else {
                     print(error?.localizedDescription ?? "No error description")
                     return
                 }
@@ -92,13 +92,16 @@ private extension ViewController {
                 
                 if response.statusCode == 200 {
                     do {
-                        let mostPopularMovies = try decoder.decode(MostPopularMovies.self, from: data)
+                        let mostPopularMovies = try decoder.decode(
+                            MostPopularMovies.self,
+                            from: data
+                        )
                         showAlert(withStatus: .succes)
                         mostPopularMovies.data.forEach { print($0) }
                         print("STATUS CODE: \(response.statusCode)")
                     } catch let error {
                         showAlert(withStatus: .failed)
-                        print(error)
+                        print(error.localizedDescription)
                     }
                 } else {
                     showAlert(withStatus: .failed)
