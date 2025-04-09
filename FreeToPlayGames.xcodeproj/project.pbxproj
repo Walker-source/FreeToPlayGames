@@ -13,8 +13,9 @@
 		5D2100102DA2A4C20096B2CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D2100042DA2A4C20096B2CE /* Assets.xcassets */; };
 		5D2100122DA2A4C20096B2CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D2100072DA2A4C20096B2CE /* LaunchScreen.storyboard */; };
 		5D2100132DA2A4C20096B2CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D2100092DA2A4C20096B2CE /* Main.storyboard */; };
-		5D2100172DA2A4DC0096B2CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2100152DA2A4DC0096B2CE /* ViewController.swift */; };
+		5D2100172DA2A4DC0096B2CE /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2100152DA2A4DC0096B2CE /* MainScreen.swift */; };
 		5D21001C2DA2A6E40096B2CE /* MostPopularMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D21001B2DA2A6CE0096B2CE /* MostPopularMovies.swift */; };
+		5DDE19DD2DA6EF65003AA61D /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDE19DC2DA6EF5B003AA61D /* Games.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,9 +26,10 @@
 		5D2100062DA2A4C20096B2CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D2100082DA2A4C20096B2CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5D21000A2DA2A4C20096B2CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5D2100152DA2A4DC0096B2CE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5D2100152DA2A4DC0096B2CE /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		5D21001B2DA2A6CE0096B2CE /* MostPopularMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostPopularMovies.swift; sourceTree = "<group>"; };
-		5D21FFEB2DA2A42E0096B2CE /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D21FFEB2DA2A42E0096B2CE /* FreeToPlayGames.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeToPlayGames.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DDE19DC2DA6EF5B003AA61D /* Games.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +58,7 @@
 		5D2100162DA2A4DC0096B2CE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				5D2100152DA2A4DC0096B2CE /* ViewController.swift */,
+				5D2100152DA2A4DC0096B2CE /* MainScreen.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -83,6 +85,7 @@
 		5D21001A2DA2A6B50096B2CE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5DDE19DC2DA6EF5B003AA61D /* Games.swift */,
 				5D0763DE2DA2C0490006A1F6 /* Testing.swift */,
 				5D21001B2DA2A6CE0096B2CE /* MostPopularMovies.swift */,
 			);
@@ -100,7 +103,7 @@
 		5D21FFEC2DA2A42E0096B2CE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5D21FFEB2DA2A42E0096B2CE /* Movies.app */,
+				5D21FFEB2DA2A42E0096B2CE /* FreeToPlayGames.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,9 +111,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5D21FFEA2DA2A42E0096B2CE /* Movies */ = {
+		5D21FFEA2DA2A42E0096B2CE /* FreeToPlayGames */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5D21FFFE2DA2A42F0096B2CE /* Build configuration list for PBXNativeTarget "Movies" */;
+			buildConfigurationList = 5D21FFFE2DA2A42F0096B2CE /* Build configuration list for PBXNativeTarget "FreeToPlayGames" */;
 			buildPhases = (
 				5D21FFE72DA2A42E0096B2CE /* Sources */,
 				5D21FFE82DA2A42E0096B2CE /* Frameworks */,
@@ -120,11 +123,11 @@
 			);
 			dependencies = (
 			);
-			name = Movies;
+			name = FreeToPlayGames;
 			packageProductDependencies = (
 			);
 			productName = Movies;
-			productReference = 5D21FFEB2DA2A42E0096B2CE /* Movies.app */;
+			productReference = 5D21FFEB2DA2A42E0096B2CE /* FreeToPlayGames.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -142,7 +145,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5D21FFE62DA2A42E0096B2CE /* Build configuration list for PBXProject "Movies" */;
+			buildConfigurationList = 5D21FFE62DA2A42E0096B2CE /* Build configuration list for PBXProject "FreeToPlayGames" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -156,7 +159,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5D21FFEA2DA2A42E0096B2CE /* Movies */,
+				5D21FFEA2DA2A42E0096B2CE /* FreeToPlayGames */,
 			);
 		};
 /* End PBXProject section */
@@ -179,9 +182,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D2100172DA2A4DC0096B2CE /* ViewController.swift in Sources */,
+				5D2100172DA2A4DC0096B2CE /* MainScreen.swift in Sources */,
 				5D21000D2DA2A4C20096B2CE /* AppDelegate.swift in Sources */,
 				5D0763DF2DA2C0500006A1F6 /* Testing.swift in Sources */,
+				5DDE19DD2DA6EF65003AA61D /* Games.swift in Sources */,
 				5D21000E2DA2A4C20096B2CE /* SceneDelegate.swift in Sources */,
 				5D21001C2DA2A6E40096B2CE /* MostPopularMovies.swift in Sources */,
 			);
@@ -397,7 +401,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5D21FFE62DA2A42E0096B2CE /* Build configuration list for PBXProject "Movies" */ = {
+		5D21FFE62DA2A42E0096B2CE /* Build configuration list for PBXProject "FreeToPlayGames" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5D2100012DA2A42F0096B2CE /* Debug */,
@@ -406,7 +410,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5D21FFFE2DA2A42F0096B2CE /* Build configuration list for PBXNativeTarget "Movies" */ = {
+		5D21FFFE2DA2A42F0096B2CE /* Build configuration list for PBXNativeTarget "FreeToPlayGames" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5D21FFFF2DA2A42F0096B2CE /* Debug */,

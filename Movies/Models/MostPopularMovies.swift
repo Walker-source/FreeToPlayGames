@@ -12,18 +12,18 @@ struct MostPopularMovies: Decodable {
 }
 
 struct Movie: Decodable {
-    let id: Int
+    let id: String
     let primaryTitle: String
     let type: String
-    let description: String
+    let description: String?
     let primaryImage: String
     let startYear: Int
     let releaseDate: String
     let interests: [String]
     let countriesOfOrigin: [String]
-    let spokenLanguages: [String]
+    let spokenLanguages: [String]?
     let genres: [String]
-    let runtimeMinutes: Int
-    let averageRating: Int
-    let numVotes: Int
+    let runtimeMinutes: Int?
+    let averageRating: Int?
+    let numVotes: Int?
 }

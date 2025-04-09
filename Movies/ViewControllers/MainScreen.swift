@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainScreen.swift
 //  Movies
 //
 //  Created by Denis Lachikhin on 06.04.2025.
@@ -42,35 +42,24 @@ enum Alert {
     }
 }
 
-final class ViewController: UIViewController {
+final class MainScreen: UIViewController {
     // MARK: - Private Properties
-    private let headers = [
-        "x-rapidapi-key": "9f2de86b9dmsh83f8d1376e73079p1b96bejsn8083da56f624",
-        "x-rapidapi-host": "imdb236.p.rapidapi.com"
-    ]
-    private let requestMostPopularMovies = NSMutableURLRequest(
-        url: Link.mostPopularMovies.url,
-        cachePolicy: .useProtocolCachePolicy,
-        timeoutInterval: 10.0
-    )
+    private let gamesUrl = URL(string:"https://www.freetogame.com/api/games?platform=pc")!
     
     // MARK: - View Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        requestMostPopularMovies.httpMethod = "GET"
-        requestMostPopularMovies.allHTTPHeaderFields = headers
-        
-//        getMostPopularMovies()
-        testing()
+        getFreeToPlayGames()
+//        testing()
     }
 }
 
 // MARK: - Networking
-private extension ViewController {
-    func getMostPopularMovies() {
+private extension MainScreen {
+    func getFreeToPlayGames() {
         URLSession.shared
-            .dataTask(with: requestMostPopularMovies as URLRequest) {
+            .dataTask(with: gamesUrl) {
                 [weak self] data,
                 response,
                 error in
@@ -84,15 +73,13 @@ private extension ViewController {
                 }
                 
                 let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 
                 if response.statusCode == 200 {
                     do {
-                        let mostPopularMovies = try decoder.decode(
-                            MostPopularMovies.self,
-                            from: data
-                        )
+                        let mostPopularMovies = try decoder.decode([Game].self, from: data)
                         showAlert(withStatus: .succes)
-                        mostPopularMovies.data.forEach { print($0) }
+                        mostPopularMovies.forEach { print($0) }
                         DispatchQueue.main.async {
                             self.view.backgroundColor = .green
                         }
@@ -140,7 +127,7 @@ private extension ViewController {
 }
 
 // MARK: - Internal Methods
-private extension ViewController {
+private extension MainScreen {
     func showAlert(withStatus status: Alert) {
         DispatchQueue.main.async { [weak self] in
             let alert = UIAlertController(
