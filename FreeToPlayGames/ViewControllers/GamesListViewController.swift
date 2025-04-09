@@ -31,17 +31,16 @@ enum Alert {
 
 final class GamesListViewController: UITableViewController {
     // MARK: - Private Properties
-    
-     var freeGamesList: [Game] = []
-    var countCells = 0
+    private let gamesUrl = URL(string: "https://www.freetogame.com/api/games?platform=pc")!
+    private var freeGamesList: [Game] = []
     
     // MARK: - View Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-//        getFreeToPlayGames { [weak self] game in
-//            guard let self else { return }
-//            freeGamesList = game
-//        }
+        getFreeToPlayGames { [weak self] game in
+            guard let self else { return }
+            freeGamesList = game
+        }
         print(freeGamesList.isEmpty)
     }
 }
@@ -77,36 +76,36 @@ extension GamesListViewController {
 
 // MARK: - Networking
 private extension GamesListViewController {
-//    func getFreeToPlayGames(completion: @escaping ([Game]) -> Void) {
-//        URLSession.shared
-//            .dataTask(with: gamesUrl) {
-//                [weak self] data,
-//                _,
-//                error in
-//                guard let self else { return }
-//                
-//                guard let data else {
-//                    print(error?.localizedDescription ?? "No error description")
-//                    return
-//                }
-//                
-//                let decoder = JSONDecoder()
-//                decoder.keyDecodingStrategy = .convertFromSnakeCase
-//                
-//                do {
-//                    let games = try decoder.decode([Game].self, from: data)
-//                    //                        showAlert(withStatus: .succes)
-//                    games.forEach { print($0) }
-//                    
-//                    DispatchQueue.main.async {
-//                        completion(games)
-//                    }
-//                } catch let error {
-//                    showAlert(withStatus: .failed)
-//                    print(error)
-//                }
-//            }.resume()
-//    }
+    func getFreeToPlayGames(completion: @escaping ([Game]) -> Void) {
+        URLSession.shared
+            .dataTask(with: gamesUrl) {
+                [weak self] data,
+                _,
+                error in
+                guard let self else { return }
+                
+                guard let data else {
+                    print(error?.localizedDescription ?? "No error description")
+                    return
+                }
+                
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                
+                do {
+                    let games = try decoder.decode([Game].self, from: data)
+                    //                        showAlert(withStatus: .succes)
+                    games.forEach { print($0) }
+                    
+                    DispatchQueue.main.async {
+                        completion(games)
+                    }
+                } catch let error {
+                    showAlert(withStatus: .failed)
+                    print(error)
+                }
+            }.resume()
+    }
 
     func fetchImage( from url: URL, completion: @escaping (UIImage?) -> Void) {
         URLSession.shared.dataTask(with: url) { data, _, error in
