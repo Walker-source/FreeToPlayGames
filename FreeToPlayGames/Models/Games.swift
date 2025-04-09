@@ -10,13 +10,13 @@ import Foundation
 struct Game: Decodable {
     let id: Int
     let title: String
-    let thumbnail: String
+    let thumbnail: URL
     let shortDescription: String
-    let gameUrl: String
+    let gameUrl: URL
     let genre: String
     let platform: String
     let publisher: String
     let developer: String
     let releaseDate: String
-    let freetogameProfileUrl: String
+    let freetogameProfileUrl: URL
 }
