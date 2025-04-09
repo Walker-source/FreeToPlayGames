@@ -43,7 +43,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5D21000C2DA2A4C20096B2CE /* Movies */ = {
+		5D21000C2DA2A4C20096B2CE /* FreeToPlayGames */ = {
 			isa = PBXGroup;
 			children = (
 				5D2100162DA2A4DC0096B2CE /* ViewControllers */,
@@ -52,7 +52,7 @@
 				5D2100192DA2A51A0096B2CE /* SupportingFiles */,
 				5D2100042DA2A4C20096B2CE /* Assets.xcassets */,
 			);
-			path = Movies;
+			path = FreeToPlayGames;
 			sourceTree = "<group>";
 		};
 		5D2100162DA2A4DC0096B2CE /* ViewControllers */ = {
@@ -95,7 +95,7 @@
 		5D21FFE22DA2A42E0096B2CE = {
 			isa = PBXGroup;
 			children = (
-				5D21000C2DA2A4C20096B2CE /* Movies */,
+				5D21000C2DA2A4C20096B2CE /* FreeToPlayGames */,
 				5D21FFEC2DA2A42E0096B2CE /* Products */,
 			);
 			sourceTree = "<group>";
