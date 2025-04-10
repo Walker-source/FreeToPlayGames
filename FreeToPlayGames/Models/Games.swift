@@ -20,7 +20,7 @@ struct Game: Decodable {
     let releaseDate: String
     let freetogameProfileUrl: URL
     
-    var description: String {
+    var about: String {
         """
 Genre: \(self.genre).
 Platform: \(self.platform).

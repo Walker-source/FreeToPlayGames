@@ -40,6 +40,12 @@ final class GamesListViewController: UITableViewController {
         
         getFreeToPlayGames()
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let gameInfoVC = segue.destination as? GameInfoViewController
+        
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        gameInfoVC?.theGame = freeGamesList[indexPath.row]
+    }
     
     // MARK: - Private Methods
     private func sortGamesByTitle() {
@@ -58,11 +64,12 @@ final class GamesListViewController: UITableViewController {
                 let firstLetter = title.removeFirst()
                 title.insert(contentsOf: firstLetter.uppercased(), at: 0)
                 title.forEach {newTitleName += String($0) }
-                print(newTitleName)
+                
                 freeGamesList.removeAll { gameId in
                     gameId.id == game.id
                 }
             }
+            
             guard var gameModel else { return }
             gameModel.title = newTitleName
             freeGamesList.append(gameModel)

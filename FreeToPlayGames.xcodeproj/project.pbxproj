@@ -15,6 +15,7 @@
 		5D2100132DA2A4C20096B2CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D2100092DA2A4C20096B2CE /* Main.storyboard */; };
 		5D2100172DA2A4DC0096B2CE /* GamesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2100152DA2A4DC0096B2CE /* GamesListViewController.swift */; };
 		5D21001C2DA2A6E40096B2CE /* MostPopularMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D21001B2DA2A6CE0096B2CE /* MostPopularMovies.swift */; };
+		5DD55BDA2DA81860002A8C53 /* GameInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD55BD92DA81853002A8C53 /* GameInfoViewController.swift */; };
 		5DDE19DD2DA6EF65003AA61D /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDE19DC2DA6EF5B003AA61D /* Games.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		5D2100152DA2A4DC0096B2CE /* GamesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListViewController.swift; sourceTree = "<group>"; };
 		5D21001B2DA2A6CE0096B2CE /* MostPopularMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostPopularMovies.swift; sourceTree = "<group>"; };
 		5D21FFEB2DA2A42E0096B2CE /* FreeToPlayGames.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeToPlayGames.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DD55BD92DA81853002A8C53 /* GameInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoViewController.swift; sourceTree = "<group>"; };
 		5DDE19DC2DA6EF5B003AA61D /* Games.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				5D2100152DA2A4DC0096B2CE /* GamesListViewController.swift */,
+				5DD55BD92DA81853002A8C53 /* GameInfoViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				5DDE19DD2DA6EF65003AA61D /* Games.swift in Sources */,
 				5D21000E2DA2A4C20096B2CE /* SceneDelegate.swift in Sources */,
 				5D21001C2DA2A6E40096B2CE /* MostPopularMovies.swift in Sources */,
+				5DD55BDA2DA81860002A8C53 /* GameInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
