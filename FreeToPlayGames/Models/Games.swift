@@ -9,7 +9,7 @@ import Foundation
 
 struct Game: Decodable {
     let id: Int
-    let title: String
+    var title: String
     let thumbnail: URL
     let shortDescription: String
     let gameUrl: URL
@@ -20,3 +20,4 @@ struct Game: Decodable {
     let releaseDate: String
     let freetogameProfileUrl: URL
 }
+

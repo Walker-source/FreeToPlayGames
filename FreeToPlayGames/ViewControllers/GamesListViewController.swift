@@ -37,13 +37,51 @@ final class GamesListViewController: UITableViewController {
     // MARK: - View Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        getFreeToPlayGames { [weak self] game in
-            guard let self else { return }
-            freeGamesList = game
-            tableView.reloadData()
+//        getFreeToPlayGames { [weak self] gamesList in
+//            guard let self else { return }
+//
+//            
+//            tableView.reloadData()
+//        }
+        getFreeToPlayGames()
+    }
+    
+//    private func sortGamesByTitle(_ array: [Game]) -> [Game] {
+//        var games = array
+//        
+//        games.sort { $0.title < $1.title}
+//        
+//        return games
+//    }
+    
+    private func sortGamesByTitle() {
+        freeGamesList.sort { $0.title < $1.title}
+    }
+    
+    private func checkForLowercaseLetters(from array: [Game]) -> [Game] {
+        var games = array
+        var gameModel: Game?
+        
+        games.forEach { game in
+            var title = game.title.compactMap { $0 }
+            var newTitleName = ""
+            gameModel = game
+            
+            if ((title.first?.lowercased()) != nil) {
+                let firstLetter = title.removeFirst()
+                title.insert(contentsOf: firstLetter.uppercased(), at: 0)
+                title.forEach {newTitleName += String($0) }
+                print(newTitleName)
+                games.removeAll { gameId in
+                    gameId.id == game.id
+                }
+            }
+            guard var gameModel else { return }
+            gameModel.title = newTitleName
+            games.append(gameModel)
         }
         
-        print(freeGamesList.isEmpty)
+        return games
     }
 }
 
@@ -69,6 +107,9 @@ extension GamesListViewController {
         fetchImage(from: gameCell.thumbnail) { image in
             content.image = image
             content.imageProperties.cornerRadius = 10
+            content.imageProperties.maximumSize.height = 60
+            content.textProperties.alignment = .justified
+            content.textProperties.font = .boldSystemFont(ofSize: 18)
             cell.contentConfiguration = content
         }
         
@@ -78,7 +119,7 @@ extension GamesListViewController {
 
 // MARK: - Networking
 private extension GamesListViewController {
-    func getFreeToPlayGames(completion: @escaping ([Game]) -> Void) {
+    func getFreeToPlayGames() {
         URLSession.shared
             .dataTask(with: gamesUrl) {
                 [weak self] data,
@@ -95,10 +136,11 @@ private extension GamesListViewController {
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 
                 do {
-                    let games = try decoder.decode([Game].self, from: data)
+                    freeGamesList = try decoder.decode([Game].self, from: data)
+                    sortGamesByTitle()
                     
-                    DispatchQueue.main.async {
-                        completion(games)
+                    DispatchQueue.main.async { [weak self] in
+                        self?.tableView.reloadData()
                     }
                 } catch let error {
                     showAlert(withStatus: .failed)
