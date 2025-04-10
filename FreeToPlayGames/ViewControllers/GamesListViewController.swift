@@ -40,15 +40,17 @@ final class GamesListViewController: UITableViewController {
         getFreeToPlayGames { [weak self] game in
             guard let self else { return }
             freeGamesList = game
+            tableView.reloadData()
         }
+        
         print(freeGamesList.isEmpty)
     }
 }
 
+// MARK: - UITableViewDataSource
 extension GamesListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         freeGamesList.count
-//        countCells
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
@@ -94,8 +96,6 @@ private extension GamesListViewController {
                 
                 do {
                     let games = try decoder.decode([Game].self, from: data)
-                    //                        showAlert(withStatus: .succes)
-                    games.forEach { print($0) }
                     
                     DispatchQueue.main.async {
                         completion(games)
@@ -106,7 +106,6 @@ private extension GamesListViewController {
                 }
             }.resume()
     }
-
     func fetchImage( from url: URL, completion: @escaping (UIImage?) -> Void) {
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data else { return }
