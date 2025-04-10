@@ -28,6 +28,7 @@ final class GameInfoViewController: UIViewController {
     
     // MARK: - Privat IB Actions
     @IBAction private func websiteDidPressed() {
+        
     }
     @IBAction func freeToPlayDidPressed() {
     }
