@@ -55,16 +55,16 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="R0D-wU-gYq">
-                                <rect key="frame" x="20" y="294" width="335" height="272.5"/>
+                                <rect key="frame" x="20" y="294" width="335" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="754" text="Description" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRm-6D-EmX">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="247"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="174.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="About" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKJ-Ml-FHW">
-                                        <rect key="frame" x="0.0" y="257" width="335" height="15.5"/>
+                                        <rect key="frame" x="0.0" y="184.5" width="335" height="15.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -73,10 +73,11 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="NKJ-Ml-FHW" secondAttribute="trailing" id="6qw-K0-Cal"/>
                                     <constraint firstItem="NKJ-Ml-FHW" firstAttribute="leading" secondItem="R0D-wU-gYq" secondAttribute="leading" id="IEV-qQ-zAy"/>
+                                    <constraint firstAttribute="height" constant="200" id="jyr-nF-wo2"/>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="PR8-G1-qxB">
-                                <rect key="frame" x="20" y="606.5" width="335" height="40.5"/>
+                                <rect key="frame" x="20" y="586.5" width="335" height="40.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nd0-XN-Bpw">
                                         <rect key="frame" x="0.0" y="0.0" width="142.5" height="40.5"/>
@@ -89,7 +90,7 @@
                                         </buttonConfiguration>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="10"/>
+                                                <integer key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -107,7 +108,7 @@
                                         </buttonConfiguration>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="10"/>
+                                                <integer key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -121,10 +122,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="8ZM-xP-nBg" firstAttribute="trailing" secondItem="VE2-3P-bWd" secondAttribute="trailing" constant="20" id="6yz-pO-uM8"/>
-                            <constraint firstItem="8ZM-xP-nBg" firstAttribute="bottom" secondItem="PR8-G1-qxB" secondAttribute="bottom" constant="20" id="7U4-eW-agU"/>
-                            <constraint firstItem="PR8-G1-qxB" firstAttribute="top" secondItem="R0D-wU-gYq" secondAttribute="bottom" constant="40" id="PwZ-pt-TPp"/>
                             <constraint firstItem="R0D-wU-gYq" firstAttribute="leading" secondItem="8ZM-xP-nBg" secondAttribute="leading" constant="20" id="Rkh-mW-Ka1"/>
                             <constraint firstItem="VE2-3P-bWd" firstAttribute="top" secondItem="8ZM-xP-nBg" secondAttribute="top" constant="20" id="Tz9-Wa-Fc9"/>
+                            <constraint firstItem="8ZM-xP-nBg" firstAttribute="bottom" secondItem="PR8-G1-qxB" secondAttribute="bottom" constant="40" id="Yig-Wv-W3U"/>
                             <constraint firstItem="8ZM-xP-nBg" firstAttribute="trailing" secondItem="PR8-G1-qxB" secondAttribute="trailing" constant="20" id="aq1-vU-pFC"/>
                             <constraint firstItem="VE2-3P-bWd" firstAttribute="leading" secondItem="8ZM-xP-nBg" secondAttribute="leading" constant="20" id="e8d-CG-4Ad"/>
                             <constraint firstItem="R0D-wU-gYq" firstAttribute="top" secondItem="VE2-3P-bWd" secondAttribute="bottom" constant="10" id="goy-x6-8ID"/>
