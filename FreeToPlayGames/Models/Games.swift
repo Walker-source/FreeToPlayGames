@@ -19,5 +19,15 @@ struct Game: Decodable {
     let developer: String
     let releaseDate: String
     let freetogameProfileUrl: URL
+    
+    var description: String {
+        """
+Genre: \(self.genre).
+Platform: \(self.platform).
+Publisher: \(self.publisher).
+Developer: \(self.developer).
+Relseas date: \(self.releaseDate).
+"""
+    }
 }
 
