@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIViewController {
+    // В общем я еще думаю нужен ли мне этот енам.
     enum UnavailableMessageType {
         case loading
         case downloadError
