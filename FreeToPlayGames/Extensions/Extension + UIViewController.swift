@@ -15,7 +15,7 @@ extension UIViewController {
         var imageName: String {
             switch self {
             case .loading:
-                ""
+                "loading"
             case .downloadError:
                 "x.circle"
             }
@@ -34,6 +34,7 @@ extension UIViewController {
         config.textProperties.font = .boldSystemFont(ofSize: 20)
         if let image {
             config.image = UIImage(named: image.imageName)
+            config.imageProperties.maximumSize.height = 100
         }
         contentUnavailableConfiguration = config
     }

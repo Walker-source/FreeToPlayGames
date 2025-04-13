@@ -67,7 +67,7 @@ final class GamesListViewController: UITableViewController {
                     showUnavailableMessage(
                         "Decoding error",
                         withConfig: UIContentUnavailableConfiguration.empty(),
-                        image: .downloadError,
+                        image: .loading,
                         andColor: .systemRed
                     )
                     return
