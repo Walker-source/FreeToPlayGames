@@ -17,45 +17,53 @@ final class GameInfoViewController: UIViewController {
     @IBOutlet private var gameDescriptionLabel: UILabel!
     @IBOutlet private var gameInfoLabel: UILabel!
     
+    // MARK: - Private Properties
+    private let networkManeger = NetworkManager.shared
+    
     // MARK: - Public Properties
     var theGame: Game!
     
     // MARK: - View Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        showUnavailableMessage(
+            "Pleas wait...",
+            withConfig: UIContentUnavailableConfiguration.loading(),
+            image: .loading,
+            andColor: .systemBlue
+        )
         setupGameInfoScreen()
     }
     
     // MARK: - Privat IB Actions
-    @IBAction private func websiteDidPressed() {
+    @IBAction private func websiteButtonDidPressed() {
         
     }
-    @IBAction func freeToPlayDidPressed() {
+    @IBAction func freeToPlayButtonDidPressed() {
     }
     
     // MARK: - Private Methods
     private func setupGameInfoScreen() {
-        fetchImage(from: theGame.thumbnail) { [weak self] image in
+        networkManeger.fetchImage(from: theGame.thumbnail) { [weak self] result in
             guard let self else { return }
-            gameThumbnaillImageView.image = image
+            
+            switch result {
+            case .success(let ImageData):
+                gameThumbnaillImageView.image = UIImage(data: ImageData)
+                contentUnavailableConfiguration = nil
+            case .failure(let error):
+                gameThumbnaillImageView.image = UIImage(named: "gamecontroller")
+                showUnavailableMessage(
+                    error.localizedDescription,
+                    withConfig: UIContentUnavailableConfiguration.empty(),
+                    image: .downloadError,
+                    andColor: .systemRed
+                )
+            }
         }
         
         navigationItem.title = theGame.title
         gameDescriptionLabel.text = theGame.shortDescription
         gameInfoLabel.text = theGame.about
-    }
-}
-
-// MARK: - Networking
-private extension GameInfoViewController {
-    func fetchImage( from url: URL, completion: @escaping (UIImage?) -> Void) {
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data else { return }
-            let image = UIImage(data: data)
-            
-            DispatchQueue.main.async {
-                completion(image)
-            }
-        }.resume()
     }
 }

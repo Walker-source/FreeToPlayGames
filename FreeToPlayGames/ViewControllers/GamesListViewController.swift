@@ -7,37 +7,20 @@
 
 import UIKit
 
-enum Alert {
-    case succes
-    case failed
-    
-    var title: String {
-        switch self {
-        case .succes:
-            "Succes"
-        case .failed:
-            "Failed"
-        }
-    }
-    var message: String {
-        switch self {
-        case .succes:
-            "You can see the result in the Debug area."
-        case .failed:
-            "You can see the arror in the Debug area."
-        }
-    }
-}
-
 final class GamesListViewController: UITableViewController {
     // MARK: - Private Properties
-    private let gamesUrl = URL(string: "https://www.freetogame.com/api/games?platform=pc")!
     private var freeGamesList: [Game] = []
+    private let networkManager = NetworkManager.shared
     
     // MARK: - View Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        showUnavailableMessage(
+            "Pleas wait...",
+            withConfig: UIContentUnavailableConfiguration.loading(),
+            image: .loading,
+            andColor: .systemBlue
+        )
         getFreeToPlayGames()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -51,7 +34,6 @@ final class GamesListViewController: UITableViewController {
     private func sortGamesByTitle() {
         freeGamesList.sort { $0.title < $1.title}
     }
-    
     private func fixLowercasedLetters() {
         var gameModel: Game?
         
@@ -74,7 +56,56 @@ final class GamesListViewController: UITableViewController {
             gameModel.title = newTitleName
             freeGamesList.append(gameModel)
         }
-        
+    }
+    private func fetchImage(from url: URL, completion: @escaping (UIImage) -> Void) {
+        networkManager.fetchImage(from: url) {[weak self] result in
+            guard let self else { return }
+            
+            switch result {
+            case .success(let imageData):
+                guard let image = UIImage(data: imageData) else {
+                    showUnavailableMessage(
+                        "Decoding error",
+                        withConfig: UIContentUnavailableConfiguration.empty(),
+                        image: .downloadError,
+                        andColor: .systemRed
+                    )
+                    return
+                }
+                DispatchQueue.main.async {
+                    completion(image)
+                }
+            case .failure(let error):
+                showUnavailableMessage(
+                    error.localizedDescription,
+                    withConfig: UIContentUnavailableConfiguration.empty(),
+                    image: .downloadError,
+                    andColor: .systemRed
+                )
+            }
+        }
+    }
+    func getFreeToPlayGames() {
+        networkManager
+            .getFreeToPlayGamesList(from: freeToPlayGamesURL) { [weak self] result in
+                guard let self else { return }
+                
+                switch result {
+                case .success(let games):
+                    freeGamesList = games
+                    fixLowercasedLetters()
+                    sortGamesByTitle()
+                    activityItemsConfiguration = nil
+                    tableView.reloadData()
+                case .failure(let error):
+                    showUnavailableMessage(
+                        error.localizedDescription,
+                        withConfig: UIContentUnavailableConfiguration.empty(),
+                        image: .downloadError,
+                        andColor: .systemRed
+                    )
+                }
+            }
     }
 }
 
@@ -88,84 +119,30 @@ extension GamesListViewController {
             withIdentifier: "gameCell",
             for: indexPath
         )
-        
-        let gameCell = freeGamesList[indexPath.row]
-        var content = cell.defaultContentConfiguration()
-        
-        content.text = gameCell.title
-        content.image = UIImage(systemName: "gamecontroller")
-        
-        cell.contentConfiguration = content
-        
-        fetchImage(from: gameCell.thumbnail) { image in
-            content.image = image
-            content.imageProperties.cornerRadius = 10
-            content.imageProperties.maximumSize.height = 60
-            content.textProperties.alignment = .justified
-            content.textProperties.font = .boldSystemFont(ofSize: 18)
-            cell.contentConfiguration = content
-        }
-        
+        let theGame = freeGamesList[indexPath.row]
+        cellSetup(cell, with: theGame)
+        contentUnavailableConfiguration = nil
         return cell
     }
 }
 
-// MARK: - Networking
+// MARK: - Setup UI
 private extension GamesListViewController {
-    func getFreeToPlayGames() {
-        URLSession.shared
-            .dataTask(with: gamesUrl) {
-                [weak self] data,
-                _,
-                error in
-                guard let self else { return }
-                
-                guard let data else {
-                    print(error?.localizedDescription ?? "No error description")
-                    return
-                }
-                
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                
-                do {
-                    freeGamesList = try decoder.decode([Game].self, from: data)
-                    fixLowercasedLetters()
-                    sortGamesByTitle()
-                    
-                    DispatchQueue.main.async { [weak self] in
-                        self?.tableView.reloadData()
-                    }
-                } catch let error {
-                    showAlert(withStatus: .failed)
-                    print(error)
-                }
-            }.resume()
-    }
-    func fetchImage( from url: URL, completion: @escaping (UIImage?) -> Void) {
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data else { return }
-            let image = UIImage(data: data)
+    func cellSetup(_ cell: UITableViewCell, with game: Game) {
+        var content = cell.defaultContentConfiguration()
+        
+        content.text = game.title
+        content.textProperties.alignment = .justified
+        content.textProperties.font = .boldSystemFont(ofSize: 18)
+        
+        cell.contentConfiguration = content
+        
+        fetchImage(from: game.thumbnail) { imageData in
+            content.image = imageData
+            content.imageProperties.cornerRadius = 10
+            content.imageProperties.maximumSize.height = 60
             
-            DispatchQueue.main.async {
-                completion(image)
-            }
-        }.resume()
-    }
-}
-
-// MARK: - Internal Methods
-private extension GamesListViewController {
-    func showAlert(withStatus status: Alert) {
-        DispatchQueue.main.async { [weak self] in
-            let alert = UIAlertController(
-                title: status.title,
-                message: status.message,
-                preferredStyle: .alert
-            )
-            let okAction = UIAlertAction(title: "OK", style: .default)
-            alert.addAction(okAction)
-            self?.present(alert, animated: true)
+            cell.contentConfiguration = content
         }
     }
 }
