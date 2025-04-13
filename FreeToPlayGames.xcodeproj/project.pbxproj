@@ -15,6 +15,8 @@
 		5D2100132DA2A4C20096B2CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D2100092DA2A4C20096B2CE /* Main.storyboard */; };
 		5D2100172DA2A4DC0096B2CE /* GamesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2100152DA2A4DC0096B2CE /* GamesListViewController.swift */; };
 		5D21001C2DA2A6E40096B2CE /* MostPopularMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D21001B2DA2A6CE0096B2CE /* MostPopularMovies.swift */; };
+		5D21565E2DABED7100F2A634 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D21565D2DABED4400F2A634 /* Extension + UIViewController.swift */; };
+		5D3BF2B72DABD8D100363A2A /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3BF2B62DABD8C300363A2A /* Networking.swift */; };
 		5DD55BDA2DA81860002A8C53 /* GameInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD55BD92DA81853002A8C53 /* GameInfoViewController.swift */; };
 		5DDE19DD2DA6EF65003AA61D /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDE19DC2DA6EF5B003AA61D /* Games.swift */; };
 /* End PBXBuildFile section */
@@ -29,7 +31,9 @@
 		5D21000A2DA2A4C20096B2CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5D2100152DA2A4DC0096B2CE /* GamesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListViewController.swift; sourceTree = "<group>"; };
 		5D21001B2DA2A6CE0096B2CE /* MostPopularMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostPopularMovies.swift; sourceTree = "<group>"; };
+		5D21565D2DABED4400F2A634 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
 		5D21FFEB2DA2A42E0096B2CE /* FreeToPlayGames.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeToPlayGames.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D3BF2B62DABD8C300363A2A /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		5DD55BD92DA81853002A8C53 /* GameInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoViewController.swift; sourceTree = "<group>"; };
 		5DDE19DC2DA6EF5B003AA61D /* Games.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -49,8 +53,10 @@
 			isa = PBXGroup;
 			children = (
 				5D2100162DA2A4DC0096B2CE /* ViewControllers */,
-				5D2100182DA2A4F20096B2CE /* Storyboards */,
+				5D21565C2DABED1500F2A634 /* Extensions */,
+				5D3BF2B32DABD89200363A2A /* Services */,
 				5D21001A2DA2A6B50096B2CE /* Models */,
+				5D2100182DA2A4F20096B2CE /* Storyboards */,
 				5D2100192DA2A51A0096B2CE /* SupportingFiles */,
 				5D2100042DA2A4C20096B2CE /* Assets.xcassets */,
 			);
@@ -95,6 +101,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		5D21565C2DABED1500F2A634 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5D21565D2DABED4400F2A634 /* Extension + UIViewController.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		5D21FFE22DA2A42E0096B2CE = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +123,14 @@
 				5D21FFEB2DA2A42E0096B2CE /* FreeToPlayGames.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5D3BF2B32DABD89200363A2A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5D3BF2B62DABD8C300363A2A /* Networking.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,8 +210,10 @@
 				5D2100172DA2A4DC0096B2CE /* GamesListViewController.swift in Sources */,
 				5D21000D2DA2A4C20096B2CE /* AppDelegate.swift in Sources */,
 				5D0763DF2DA2C0500006A1F6 /* Testing.swift in Sources */,
+				5D3BF2B72DABD8D100363A2A /* Networking.swift in Sources */,
 				5DDE19DD2DA6EF65003AA61D /* Games.swift in Sources */,
 				5D21000E2DA2A4C20096B2CE /* SceneDelegate.swift in Sources */,
+				5D21565E2DABED7100F2A634 /* Extension + UIViewController.swift in Sources */,
 				5D21001C2DA2A6E40096B2CE /* MostPopularMovies.swift in Sources */,
 				5DD55BDA2DA81860002A8C53 /* GameInfoViewController.swift in Sources */,
 			);
