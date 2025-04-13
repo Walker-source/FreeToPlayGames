@@ -50,7 +50,7 @@ final class GamesListViewController: UITableViewController {
                 freeGamesList.removeAll { gameId in
                     gameId.id == game.id
                 }
-            }
+            } else { return }
             
             guard var gameModel else { return }
             gameModel.title = newTitleName
