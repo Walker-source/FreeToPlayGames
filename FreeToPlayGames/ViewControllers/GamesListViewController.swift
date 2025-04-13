@@ -27,7 +27,7 @@ final class GamesListViewController: UITableViewController {
         let gameInfoVC = segue.destination as? GameInfoViewController
         
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        gameInfoVC?.theGame = freeGamesList[indexPath.row]
+        gameInfoVC?.game = freeGamesList[indexPath.row]
     }
     
     // MARK: - Private Methods

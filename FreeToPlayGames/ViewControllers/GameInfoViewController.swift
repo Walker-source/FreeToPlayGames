@@ -21,7 +21,7 @@ final class GameInfoViewController: UIViewController {
     private let networkManeger = NetworkManager.shared
     
     // MARK: - Public Properties
-    var theGame: Game!
+    var game: Game!
     
     // MARK: - View Life Cycles
     override func viewDidLoad() {
@@ -44,7 +44,7 @@ final class GameInfoViewController: UIViewController {
     
     // MARK: - Private Methods
     private func setupGameInfoScreen() {
-        networkManeger.fetchImage(from: theGame.thumbnail) { [weak self] result in
+        networkManeger.fetchImage(from: game.thumbnail) { [weak self] result in
             guard let self else { return }
             
             switch result {
@@ -62,8 +62,8 @@ final class GameInfoViewController: UIViewController {
             }
         }
         
-        navigationItem.title = theGame.title
-        gameDescriptionLabel.text = theGame.shortDescription
-        gameInfoLabel.text = theGame.about
+        navigationItem.title = game.title
+        gameDescriptionLabel.text = game.shortDescription
+        gameInfoLabel.text = game.about
     }
 }
