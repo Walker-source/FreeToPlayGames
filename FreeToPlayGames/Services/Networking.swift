@@ -36,7 +36,7 @@ final class NetworkManager {
             }
         }.resume()
     }
-    func getFreeToPlayGamesList(
+    func fetchFreeToPlayGamesList(
         from url: URL,
         completion: @escaping (Result<[Game], NetworkError>) -> Void
     ) {

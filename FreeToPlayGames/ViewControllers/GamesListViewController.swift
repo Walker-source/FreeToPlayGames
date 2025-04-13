@@ -21,7 +21,7 @@ final class GamesListViewController: UITableViewController {
             image: .loading,
             andColor: .systemBlue
         )
-        getFreeToPlayGames()
+        fetchGamesList()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let gameInfoVC = segue.destination as? GameInfoViewController
@@ -85,9 +85,9 @@ final class GamesListViewController: UITableViewController {
             }
         }
     }
-    func getFreeToPlayGames() {
+    func fetchGamesList() {
         networkManager
-            .getFreeToPlayGamesList(from: freeToPlayGamesURL) { [weak self] result in
+            .fetchFreeToPlayGamesList(from: freeToPlayGamesURL) { [weak self] result in
                 guard let self else { return }
                 
                 switch result {
